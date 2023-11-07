@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+<form class="formu bg-info" method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3 ">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 link-warning fs-1 bg-info shadow-lg badge list-group-item-action mb-3 font-weight-normal border-light list-group text-md-center">Please sign in</h1>
+    <label class="email fw-bold fs-2 m-3 link-light" for="inputEmail ">Email</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class=" bg-transparent borderlist-group-horizontal border border-3 border-light p-1 col-4 link-light m-3" autocomplete="email" required autofocus>
+    <label class="mdp fw-bold fs-2 m-3 link-light" for="inputPassword ">Password</label>
+    <input type="password" name="password" id="inputPassword" class=" bg-transparent borderlist-group-horizontal border border-3 border-light p-1 col-4 link-light m-3" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+    <button class="btn btn-lg btn-warning m-3 fs-2" type="submit">
+        Sign in
+    </button>
+</form>
+{% endblock %}

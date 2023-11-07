@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper link-info shadow-lg badge list-group-item mt-3 p-3 bg-secondary form-switch border border-3 border-info">
+    <h1 class="regis fs-1 ">Register</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+    <div class="row ">
+        <div class="col-md-6 link-warning fw-semibold mt-3 fs-2">
+            {{ form_row(registrationForm.email, {'attr': {'class': 'list-group-item-action form-select-lg m-5 fs-2 border border-3 border-info'}}) }}
+        </div>
+   
+        <div class="col-md-6 link-warning fw-semibold mt-3 fs-2">
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password', 'attr': {'class': 'list-group-item-action form-select-lg m-5 fs-2 border border-3 border-info'}
+            }) }}
+        </div>
+    </div>
+        
+
+    <div class="row">
+        <div class="col-md-4 fst-italic border w-auto border-danger-subtle btn-lg mt-3 fs-2">
+        {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'list-group-item-action form-select-lg m-5 fs-2'}}) }}
+        </div>
+    </div>
+    
+    <button type="submit" class="btn btn-outline-warning fs-2">Register</button>
+    {{ form_end(registrationForm) }}
+</div>    
+{% endblock %}
